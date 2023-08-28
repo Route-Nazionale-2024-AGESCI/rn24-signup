@@ -10,8 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,3 +18,12 @@ jobs:
 
     - name: Run test suite
       run: php rn24-signup/test.php
+
+  zip-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: vimtor/action-zip@v1
+        with:
+          files: rn24-signup/
+          dest: rn24-signup.zip
