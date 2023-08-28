@@ -10,7 +10,7 @@ function tprint($func_name, $message) {
     echo sprintf("%s: %s\n", $func_name, $message);
 }
 
-function testit($func_name, $result) {
+function testit($func_name, $result): bool {
     try {
         $func_result = $func_name();
     }
@@ -18,15 +18,17 @@ function testit($func_name, $result) {
         tprint($func_name, 'FALLITO');
         tprint($func_name, 'ECCEZZIONE');
         tprint($func_name, $e->getMessage());
+        return false;
     }
 
     if($func_result != $result) {
         tprint($func_name, 'FALLITO');
         tprint($func_name, sprintf('%s != %s', $func_result, $result));
-        return;
+        return false;
     }
 
     tprint($func_name, 'PASSATO');
+    return true;
 }
 
 
@@ -107,5 +109,13 @@ $totest = [
     'validator_email_valid' => null,
 ];
 
+$error = false;
 foreach($totest as $func_name => $result)
-    testit($func_name, $result);
+    if(!testit($func_name, $result))
+        $error = true;
+
+if($error)
+    exit(1);
+
+echo 'FINITO CON SUCCESSO';
+exit(0);
