@@ -27,3 +27,7 @@ jobs:
         with:
           files: rn24-signup/
           dest: rn24-signup.zip
+      - uses: actions/upload-artifact@v1
+        with:
+          name: rn24-signup-artifact
+          path: ${{ github.workspace }}/rn24-signup.zip
