@@ -102,7 +102,7 @@ function _get_form() {
         $group_value = sprintf(
             '<option value="%s" SELECTED>%s</option>',
             $group_value,
-            get_group_denominazione_from_ordinale($group_value)
+            get_group_denominazione_from_ordinale($group_value, $group_value)
         );
     else
         $group_value = '';

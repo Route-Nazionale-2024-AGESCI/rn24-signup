@@ -32,12 +32,14 @@ function rn24_get_groups() {
 }
 
 
-function get_group_denominazione_from_ordinale(string $ordinale): string|null {
+function get_group_denominazione_from_ordinale(string $ordinale, $default=''): string|null {
     foreach (rn24_get_groups() as $data) {
         if ($data['Ordinale'] === $ordinale) {
             return $data['Denominazione Gruppo'];
         }
     }
+
+    return $default;
 }
 
 function rn24_get(string $key, array $array, $default=null) {
