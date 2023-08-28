@@ -24,7 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: |
+        mkdir artifact
+        cp -R rn24-signup artifact
       - uses: actions/upload-artifact@v1
         with:
           name: rn24-signup
-          path: ${{ github.workspace }}/rn24-signup/
+          path: ${{ github.workspace }}/artifact
