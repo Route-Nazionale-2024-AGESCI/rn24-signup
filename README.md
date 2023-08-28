@@ -17,4 +17,4 @@ Il plugin fornisce uno shortcode da inserire nella pagina desiderata
 Il json dei gruppi è in `data/groups.json` generato con il sito https://products.aspose.app/cells/conversion/excel-to-json con il file fornito dalla segreteria
 
 ## Test
-`php test.php`
+`php rn24-signup/test.php`
