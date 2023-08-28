@@ -57,9 +57,16 @@ class NotInGroups extends ValidationErrorWithValue {
 
 class EmailExistsError extends ValidationErrorWithValue {
     public function getValidationMessage(): string {
-        return sprintf("L'email %s è già registratra", $this->value);
+        return sprintf("L'email %s è già registrata", $this->value);
     }
 }
+
+class UsernameExistsError extends ValidationErrorWithValue {
+    public function getValidationMessage(): string {
+        return sprintf("Il gruppo è già registrato", $this->value);
+    }
+}
+
 
 class EmailNotValid extends ValidationErrorWithValue {
     public function getValidationMessage(): string {

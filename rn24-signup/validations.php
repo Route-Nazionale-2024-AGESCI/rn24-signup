@@ -31,6 +31,13 @@ class EmailExists extends Validator {
     }
 }
 
+class UsernameExists extends Validator {
+    public function validate($value) {
+        if(username_exists($value))
+            throw new UsernameExistsError($this->param, $value);
+    }
+}
+
 class ValidEmail extends Validator {
     public function validate($value) {
         if(!filter_var($value, FILTER_VALIDATE_EMAIL))

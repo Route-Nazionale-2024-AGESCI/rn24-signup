@@ -57,11 +57,12 @@ function create_user_and_send_password_email($email, $group) {
 
     // Check if user creation was successful
     if (is_wp_error($user_id)) {
-        throw Exception('Utente non createo');
+        throw new Exception('Utente non creato');
     }
 
     add_user_meta($user_id, 'RN24_ORDINALE', $group);
 
     // Send password reset email to the user
-    wp_mail($email, 'Accedi a RN24', 'username: ' . $email . "\nPassword: " . $password);   
+    $result = wp_mail($email, 'Accedi a RN24', 'username: ' . $email . "\nPassword: " . $password);   
+    var_dump($result);
 }

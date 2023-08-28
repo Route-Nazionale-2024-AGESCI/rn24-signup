@@ -197,7 +197,7 @@ function rn24_handle_form(){
     
     $rules = [
         'email' => ['Required', 'ValidEmail', 'EmailExists'],
-        'group' => ['Required', 'ExistInGroups:Ordinale'],
+        'group' => ['Required', 'ExistInGroups:Ordinale', 'UsernameExists'],
     ];
 
     try {
