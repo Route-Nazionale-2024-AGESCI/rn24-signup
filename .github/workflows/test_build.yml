@@ -19,15 +19,12 @@ jobs:
     - name: Run test suite
       run: php rn24-signup/test.php
 
-  zip-files:
+  upload:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: vimtor/action-zip@v1
-        with:
-          files: rn24-signup/
-          dest: rn24-signup.zip
       - uses: actions/upload-artifact@v1
         with:
-          name: rn24-signup-artifact
-          path: ${{ github.workspace }}/rn24-signup.zip
+          name: rn24-signup
+          path: ${{ github.workspace }}/rn24-signup/
