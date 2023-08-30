@@ -5,7 +5,7 @@
  * Author: matte1
  * Description: Handle group registration
  * Version: 0.1.1
- * Requires PHP: 8.1
+ * Requires PHP: 8.0
  */
 
 require_once 'ajax.php';
