@@ -137,7 +137,7 @@ function _get_form() {
             </div>
             <div class="form-group hideShowParent email" style="$hide">
                 <label for="email">Email</label>
-                <input name="email" type="email" class="form-control w-100" id="email" aria-describedby="emailHelp" placeholder="Inserisci email" value="$email_value" required />
+                <input name="email" type="email" class="form-control w-100" id="email" aria-describedby="emailHelp" placeholder="Inserisci email" value="$email_value" disabled />
                 $email_error
             </div>
             <button type="submit" name="rn24-signup-submit" class="btn btn-primary" $disabled>Registrati</button>
@@ -199,6 +199,8 @@ function rn24_handle_form(){
         'email' => ['Required', 'ValidEmail', 'EmailExists'],
         'group' => ['Required', 'ExistInGroups:Ordinale', 'UsernameExists'],
     ];
+
+    $_POST['email'] = get_group_email_from_ordinale($_POST['group']);
 
     try {
         $cleaned_data = validate($rules, $_POST);

@@ -42,6 +42,16 @@ function get_group_denominazione_from_ordinale(string $ordinale, $default=''): s
     return $default;
 }
 
+function get_group_email_from_ordinale(string $ordinale, $default=''): string|null {
+    foreach (rn24_get_groups() as $data) {
+        if ($data['Ordinale'] === $ordinale) {
+            return $data['GruppoEmail'];
+        }
+    }
+
+    return $default;
+}
+
 function rn24_get(string $key, array $array, $default=null) {
     return $array[$key] ?? $default;
 }
