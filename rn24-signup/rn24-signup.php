@@ -4,7 +4,7 @@
  * Plugin Name: RN24 singup
  * Author: matte1
  * Description: Handle group registration
- * Version: 0.1.0
+ * Version: 0.1.1
  * Requires PHP: 8.1
  */
 
