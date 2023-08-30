@@ -193,14 +193,13 @@ function rn24_handle_form(){
         '%s%s', get_site_url(), $_SERVER['REQUEST_URI']
     );
     
-    $_SESSION['rn24_signup_old'] = $_POST;
-    
     $rules = [
         'email' => ['Required', 'ValidEmail', 'EmailExists'],
         'group' => ['Required', 'ExistInGroups:Ordinale', 'UsernameExists'],
     ];
 
     $_POST['email'] = get_group_email_from_ordinale($_POST['group']);
+    $_SESSION['rn24_signup_old'] = $_POST;
 
     try {
         $cleaned_data = validate($rules, $_POST);
