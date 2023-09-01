@@ -45,10 +45,9 @@ function rn24_setup_scripts() {
     wp_enqueue_style('rn24-signup-select2-style');
     wp_enqueue_script('rn24-signup-select2-script', rn24_get_plugin_url('assets/vendor/select2/js/select2.min.js'), array( 'jquery' ) );
 
-    wp_register_style('rn24-signup-bootstrap-style', rn24_get_plugin_url('assets/vendor/bootstrap/css/bootstrap.min.css'));
-    wp_enqueue_style('rn24-signup-bootstrap-style');
-
-    wp_enqueue_script('rn24-signup-bootstrap-script', rn24_get_plugin_url('assets/vendor/bootstrap/js/bootstrap.min.js'), array( 'jquery' ) );
+    //wp_register_style('rn24-signup-bootstrap-style', rn24_get_plugin_url('assets/vendor/bootstrap/css/bootstrap.min.css'));
+    //wp_enqueue_style('rn24-signup-bootstrap-style');
+    //wp_enqueue_script('rn24-signup-bootstrap-script', rn24_get_plugin_url('assets/vendor/bootstrap/js/bootstrap.min.js'), array( 'jquery' ) );
     
     wp_enqueue_script('rn24-signup-script', rn24_get_plugin_url('assets/js/form.js'), array( 'rn24-signup-select2-script' ) );
 
@@ -216,10 +215,12 @@ function rn24_handle_form(){
         return;
     }
     catch(Exception $e) {
-        return wp_redirect($redirect_url.'?r24_error=107');
+        wp_redirect($redirect_url.'?r24_error');
+        exit();
     }
 
-    return wp_redirect($redirect_url.'?r24_success=107');
+    wp_redirect($redirect_url.'?r24_success');
+    exit();
 }
 
 add_action( 'init', 'rn24_handle_form' );
