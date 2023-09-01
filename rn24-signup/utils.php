@@ -70,9 +70,13 @@ function create_user_and_send_password_email($email, $group) {
         throw new Exception('Utente non creato');
     }
 
+    add_user_meta($user_id, 'first_name', get_group_denominazione_from_ordinale($group, $group));
     add_user_meta($user_id, 'RN24_ORDINALE', $group);
 
     // Send password reset email to the user
-    $result = wp_mail($email, 'Accedi a RN24', 'username: ' . $email . "\nPassword: " . $password);   
-    var_dump($result);
+    try {
+        $result = wp_mail($email, 'Accedi a RN24', 'username: ' . $email . "\nPassword: " . $password);  
+    } catch (Exception $e) {
+        var_dump($e);
+    }
 }
