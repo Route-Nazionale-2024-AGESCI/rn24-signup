@@ -70,20 +70,18 @@ function create_user_and_send_password_email($email, $group) {
         throw new Exception('Utente non creato');
     }
 
-    $group_name = get_group_denominazione_from_ordinale($group, $group);
-
-    wp_update_user([
+	wp_update_user([
         'ID' => $user_id, 
-        'first_name' => $group_name,
-        'user_nicename' => $group_name
+        'first_name' =>  get_group_denominazione_from_ordinale($group, $group)
     ]);
     add_user_meta($user_id, 'RN24_ORDINALE', $group);
 
     // Send password reset email to the user
     try {
-        $result = wp_mail($email, 'Accedi a RN24', 'username: ' . $email . "\nPassword: " . $password);  
+		$template = function_exists('prepare_registration_email') ? prepare_registration_email($email, get_group_denominazione_from_ordinale($group, $group),  $password) : 
+			'username: ' . $email . '\nPassword: ' . $password;
+        $result = wp_mail('lorenzo.cioni@rn24.agesci.it', 'Benvenuto su RN24', $template);  
     } catch (Exception $e) {
         var_dump($e);
-        //TODO gestione errore invio
     }
 }
