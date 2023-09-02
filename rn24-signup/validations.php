@@ -33,8 +33,11 @@ class EmailExists extends Validator {
 
 class UsernameExists extends Validator {
     public function validate($value) {
-        if(username_exists($value))
-            throw new UsernameExistsError($this->param, $value);
+        if(username_exists($value)) {
+            $email = get_group_email_from_ordinale($value);
+            wp_redirect(esc_url(home_url( '/login/?email='.$email )));
+            exit();
+        } 
     }
 }
 
