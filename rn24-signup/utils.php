@@ -70,15 +70,18 @@ function create_user_and_send_password_email($email, $group) {
         throw new Exception('Utente non creato');
     }
 
+	$group_name = get_group_denominazione_from_ordinale($group, $group);
 	wp_update_user([
         'ID' => $user_id, 
-        'first_name' =>  get_group_denominazione_from_ordinale($group, $group)
+        'first_name' => $group_name,
+		'user_nicename' => $group_name,
+		'display_name' => $group_name
     ]);
     add_user_meta($user_id, 'RN24_ORDINALE', $group);
 
     // Send password reset email to the user
     try {
-		$template = function_exists('prepare_registration_email') ? prepare_registration_email($email, get_group_denominazione_from_ordinale($group, $group),  $password) : 
+		$template = function_exists('prepare_registration_email') ? prepare_registration_email($email, $group_name,  $password) : 
 			'username: ' . $email . '\nPassword: ' . $password;
         $result = wp_mail($email, 'Benvenuto su RN24', $template);  
     } catch (Exception $e) {
