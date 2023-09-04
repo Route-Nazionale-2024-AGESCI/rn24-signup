@@ -4,7 +4,7 @@
  * Plugin Name: RN24 singup
  * Author: matte1
  * Description: Handle group registration
- * Version: 0.1.1
+ * Version: 0.1.2
  * Requires PHP: 8.0
  */
 
@@ -117,7 +117,7 @@ function _get_form() {
     $group_error = rn24_get('group', $error_messages, '');
     $email_error = rn24_get('email', $error_messages, '');
     $signupform .= <<<SIGNUPFORM
-        <form method="POST" action="" class="rn24SignupForm">
+        <form method="POST" autocomplete="off" action="" class="rn24SignupForm">
             <div class="form-group">
                 <label for="regione">Regione</label>
                 <select id="regione" name="region" class="sl2 regione w-100" >
