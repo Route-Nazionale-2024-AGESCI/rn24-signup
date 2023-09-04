@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Plugin Name: RN24 singup
+ * Plugin Name: RN24 signup
  * Author: matte1
  * Description: Handle group registration
  * Version: 0.1.2
