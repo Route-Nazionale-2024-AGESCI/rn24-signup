@@ -80,7 +80,7 @@ function create_user_and_send_password_email($email, $group) {
     try {
 		$template = function_exists('prepare_registration_email') ? prepare_registration_email($email, get_group_denominazione_from_ordinale($group, $group),  $password) : 
 			'username: ' . $email . '\nPassword: ' . $password;
-        $result = wp_mail('lorenzo.cioni@rn24.agesci.it', 'Benvenuto su RN24', $template);  
+        $result = wp_mail($email, 'Benvenuto su RN24', $template);  
     } catch (Exception $e) {
         var_dump($e);
     }
