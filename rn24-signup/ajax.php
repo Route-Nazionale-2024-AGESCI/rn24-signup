@@ -5,14 +5,14 @@ require_once 'utils.php';
 function rn24_select_groups() {
     $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
     $q = strtoupper(isset($_POST['q']) ? sanitize_text_field($_POST['q']) : '');
-    $region = strtoupper(isset($_POST['region']) ? sanitize_text_field($_POST['region']) : '');
+    $region = stripslashes(isset($_POST['region']) ? strtoupper($_POST['region']) : '');
 
     $groups = rn24_get_groups();
 	
     $filtered_group = array_filter(
         $groups,
         function($item) use ($region) {
-            return $item['Regione'] === $region;
+            return stripslashes(strtoupper($item['Regione'])) === $region;
         }
     );
 
